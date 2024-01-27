@@ -2,10 +2,18 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    entry: [
+        './src/index.js'
+    ],
     output: {
+        filename: '[name].[contenthash].js',
         publicPath: "/contact-list",
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
     },
     module: {
         rules: [
@@ -15,6 +23,14 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                 },
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             },
             {
                 test: /\.css$/,
@@ -30,8 +46,8 @@ module.exports = {
         ],
     },
     devServer: {
-        historyApiFallback: true,
-        port:3000
+        historyApiFallback: {index: "/contact-list"},
+        port: 3000
     },
     devtool: 'inline-source-map',
     plugins: [

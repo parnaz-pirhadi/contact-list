@@ -1,0 +1,6 @@
+const FrequentlyVisitedContactTypes={
+    SET_FREQUENTLY_VISITED_CONTACT:"SET_FREQUENTLY_VISITED_CONTACT",
+    GET_FREQUENTLY_VISITED_CONTACT:"GET_FREQUENTLY_VISITED_CONTACT"
+}
+
+export default FrequentlyVisitedContactTypes

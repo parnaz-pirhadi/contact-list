@@ -1,8 +1,9 @@
 import ContactListTypes from "./types";
 
 export const initialStates = {
-    getContactList: [],
-    getContactListErrorType: null
+    list: [],
+    loading:false,
+    totalItems:0
 }
 
 const contactListReducers = (state = initialStates, action) => {
@@ -10,20 +11,23 @@ const contactListReducers = (state = initialStates, action) => {
         case ContactListTypes.GET_CONTACT_LIST:
             return {
                 ...state,
-                getContactListErrorType: null
+                loading: true
             }
         case ContactListTypes.GET_CONTACT_LIST_SUCCESS:
             return {
                 ...state,
-                getContactList: action.payload.data,
-                getContactListErrorType: action.payload.errorType
+                list: action.payload.data.items,
+                totalItems:action.payload.data.meta.total,
+                loading: false
             }
         case ContactListTypes.GET_CONTACT_LIST_FAILURE:
             return {
                 ...state,
-                getContactList: null,
-                getContactListErrorType: action.payload.errorType
+                list: [],
+                loading: false
             }
+            case ContactListTypes.RESET_CONTACT_LIST:
+            return initialStates
 
         default:
             return {...state}

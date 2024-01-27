@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactList = React.lazy(() => import('../../../pages/ContactList'));
+const HomePage = React.lazy(() => import('../../../pages/HomePage'));
 const ContactDetail = React.lazy(() => import('../../../pages/ContactDetail'));
 
 
@@ -8,10 +8,10 @@ const routers = [
     {
         path: "/",
         exact: true,
-        component: ContactList,
+        component: HomePage,
     },
     {
-        path: "/id",
+        path: "/:id",
         exact: true,
         component: ContactDetail,
     }
