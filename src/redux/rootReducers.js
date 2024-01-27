@@ -1,16 +1,16 @@
-import storage from 'redux-persist/lib/storage/session';
+import storage from 'redux-persist/lib/storage';
 import {persistReducer} from "redux-persist";
-import {contactListReducers} from "./ducks";
+import {contactListReducers,frequentlyVisitedContactReducers} from "./ducks";
 
-const contactListConfig = {
-    key: 'products',
+
+const topVisitedConfig = {
+    key: 'topVisited',
     storage,
-    // blacklist:'showLoginModal'
 };
 
-
 const rootReducers = {
-    contactList: persistReducer(contactListConfig, contactListReducers)
+    contactList: contactListReducers,
+    frequentlyVisitedContact: persistReducer(topVisitedConfig, frequentlyVisitedContactReducers)
 };
 
 export default rootReducers;
